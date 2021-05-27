@@ -1,0 +1,27 @@
+{
+  "name": "ubiquitous-nodejs",
+  "version": "1.0.0",
+  "description": "ubiquitous-nodejs is a web scaffold which is based on node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --use_strict index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pudongping/ubiquitous-nodejs.git"
+  },
+  "keywords": [
+    "koa",
+    "async",
+    "nunjucks"
+  ],
+  "author": "Alex Pu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pudongping/ubiquitous-nodejs/issues"
+  },
+  "homepage": "https://github.com/pudongping/ubiquitous-nodejs#readme",
+  "dependencies": {
+    "koa": "^2.0.0"
+  }
+}
