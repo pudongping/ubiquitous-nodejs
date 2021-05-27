@@ -2,9 +2,9 @@
   "name": "ubiquitous-nodejs",
   "version": "1.0.0",
   "description": "ubiquitous-nodejs is a web scaffold which is based on node.js",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node --use_strict index.js"
+    "start": "node --use_strict app.js"
   },
   "repository": {
     "type": "git",
