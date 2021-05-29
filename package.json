@@ -4,7 +4,12 @@
   "description": "ubiquitous-nodejs is a web scaffold which is based on node.js",
   "main": "app.js",
   "scripts": {
-    "start": "node --use_strict app.js"
+    "start": "NODE_ENV=development node --use_strict app.js",
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node --use_strict app.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node --use_strict app.js",
+    "test": "cross-env NODE_ENV=test node --use_strict app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +27,15 @@
   },
   "homepage": "https://github.com/pudongping/ubiquitous-nodejs#readme",
   "dependencies": {
-    "koa": "^2.0.0"
+    "chokidar": "^3.5.1",
+    "cross-env": "^7.0.3",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "mime": "^2.5.2",
+    "mysql": "^2.18.1",
+    "mz": "^2.7.0",
+    "nunjucks": "^3.2.3",
+    "sequelize": "^6.6.2"
   }
 }
