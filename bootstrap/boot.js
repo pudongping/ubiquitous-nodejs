@@ -2,8 +2,8 @@ const Koa = require('koa');
 // 引入 koa-bodyparser 来解析原始 request 中的 body
 const bodyParser = require('koa-bodyparser');
 const fs = require('fs');
-const helper = require('../lib/helper');
-const templating = require('./templating');
+const helper = require(global.root_path + '/lib/helper');
+const templating = require(helper.fileWithAbsPath('bootstrap', 'templating'));
 
 // 创建一个 Koa 对象表示 web app 本身
 const app = new Koa();
@@ -83,33 +83,26 @@ function _autoloadRoute() {
 }
 
 /**
- * 自动加载 config 目录下所有的配置信息
+ * 根据当前项目环境取出对应的配置文件信息
  * @param dir  配置文件目录名称
  * @returns {{}}
  */
 function loadConfigData(dir) {
-    let configDir = dir || 'config';
-    let config = {};
-    fs.readdirSync(helper.fileWithAbsPath(configDir)).filter((f) => {
-        return f.endsWith('.js');
-    }).forEach((f) => {
-        console.log(`load config: ${f}`);
-        let configName = f.replace('.js', '');  // 获取配置文件的名称
-        let mapping = require(helper.fileWithAbsPath(configDir, f));  // 引入配置文件中的配置信息
-        config[configName] = mapping;  // 以配置文件名称作为 key，配置名称对应的配置作为 value
-    });
-    return config;  // 读取到的所有配置信息
-}
-
-/**
- * 根据当前项目环境取出对应的配置文件信息
- * @returns {*}
- */
-function configForEnv() {
-    let allConfig = loadConfigData();
-    let env = 'development';
+    let configDir = dir || 'config',
+        config = {},
+        configPath = '',
+        env = 'development';
     if (process.env.NODE_ENV) env = process.env.NODE_ENV;
-    return allConfig[env];
+
+    configPath = helper.fileWithAbsPath(configDir, env) + '.js';
+
+    let stat = fs.statSync(configPath);
+    if (stat.isFile()) {
+        console.log(`load config: ${configPath}`);
+        config = require(configPath);  // 引入对应环境的配置信息
+    }
+
+    return config;  // 读取到的配置信息
 }
 
 /**
@@ -127,5 +120,5 @@ function start() {
 module.exports = {
     start: start,  // 启动程序
     app: app,  // koa 对象
-    config: configForEnv,  // 当前环境配置信息
+    config: loadConfigData,  // 当前环境配置信息
 }
