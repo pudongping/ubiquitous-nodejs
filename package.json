@@ -33,7 +33,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
     "mime": "^2.5.2",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "mz": "^2.7.0",
     "nunjucks": "^3.2.3",
     "sequelize": "^6.6.2"
