@@ -1,24 +1,22 @@
 /**
- *
  * 测试环境配置文件信息
- *
- * @type {{app: {web_port: number}, mysql: {database: string, password: string, port: number, host: string, username: string}, redis: {password: null, port: number, host: string, db: number}}}
  */
 module.exports = {
     app: {
         web_port: 9500,  // 默认 web 启动端口
     },
     mysql: {
-        'host': '',  // 数据库连接地址
-        'port': 3306,  // 数据库连接端口
-        'database': '',  // 数据库名称
-        'username': '',  // 数据库用户名
-        'password': '',  // 数据库密码
+        dialect: 'mysql',
+        host: '',  // 数据库连接地址
+        port: 3306,  // 数据库连接端口
+        database: '',  // 数据库名称
+        username: '',  // 数据库用户名
+        password: '',  // 数据库密码
     },
     redis: {
-        'host': '',  // redis 连接地址
-        'port': 6379,  // redis 连接端口
-        'password': null,  // redis 密码
-        'db': 0,  // redis 数据库
+        host: '',  // redis 连接地址
+        port: 6379,  // redis 连接端口
+        password: null,  // redis 密码
+        db: 0,  // redis 数据库
     },
 };

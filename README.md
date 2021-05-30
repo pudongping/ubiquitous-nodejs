@@ -13,5 +13,5 @@ koa-bodyparser | 解析原始 request 的 body
 cross-env | 定义环境变量
 mz | 支持 Promise 的 fs 模块
 mime | 读取文件的 mime
-mysql | mysql 驱动
-sequelize | orm
+mysql | Node.js 的 mysql 驱动程序
+[sequelize](https://sequelize.org/) | Node.js 的 ORM 框架

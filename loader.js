@@ -1,8 +1,7 @@
-
 /**
- * 初始化项目根目录
- * @type {string}
+ * 初始化项目
  */
+
 const ROOT_PATH = __dirname;
 // 将项目绝对路径存入全局变量中
 global.root_path = ROOT_PATH;
@@ -14,6 +13,3 @@ module.exports = {
     }
 
 }
-
-
-
