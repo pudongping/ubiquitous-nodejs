@@ -4,6 +4,7 @@ const bodyParser = require('koa-bodyparser');
 const fs = require('fs');
 const helper = require(global.root_path + '/lib/helper');
 const templating = require(helper.fileWithAbsPath('bootstrap', 'templating'));
+const rest = require(helper.fileWithAbsPath('bootstrap', 'rest'));
 
 // 创建一个 Koa 对象表示 web app 本身
 const app = new Koa();
@@ -69,6 +70,14 @@ function _templating() {
 }
 
 /**
+ * 给 ctx 加上 rest() 函数来处理 api 路由
+ * @private
+ */
+function _rest() {
+    app.use(rest.restify());
+}
+
+/**
  * 自动注册路由
  * @private
  */
@@ -114,7 +123,8 @@ function start() {
     _staticFiles();  // 3、处理静态文件
     _parseRequestBody();  // 4、解析 post 请求
     _templating();  // 5、给 ctx 加上 render() 函数来使用 Nunjucks
-    _autoloadRoute();  // 6、自动注册路由
+    _rest();  // 6、给 ctx 加上 rest() 函数来处理 api 路由
+    _autoloadRoute();  // 7、自动注册路由
 }
 
 module.exports = {
