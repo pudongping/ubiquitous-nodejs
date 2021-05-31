@@ -1,4 +1,6 @@
-const moment = require('moment');
+/**
+ * 用户相关 service
+ */
 
 const helper = require(global.root_path + '/lib/helper');
 const model = require(helper.fileWithAbsPath('models', 'model'));
@@ -62,7 +64,6 @@ module.exports = {
             avatar: ctx.request.body.avatar || '',
             gender: ctx.request.body.gender || 1,
             password: ctx.request.body.password || '123456',
-            // updated_at: moment().format('YYYY-MM-DD hh:mm:ss'),
         };
 
         // 返回的是影响行数，比如 1

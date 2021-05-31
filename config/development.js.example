@@ -3,6 +3,7 @@
  */
 module.exports = {
     app: {
+        url: 'http://localhost',  // 当前项目的域名
         web_port: 9500,  // 默认 web 启动端口
         dialect: 'mysql',  // 选择使用什么数据库，可选：mysql、mariadb、postgres、mssql
         enable_db_defined: false,  // 是否打印模型初始化信息

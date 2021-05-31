@@ -14,4 +14,4 @@ console.log(`The development environment is ====> ${process.env.NODE_ENV} `);
 
 // 监听端口
 bootstrap.app.listen(global.config.app.web_port);
-console.log(`app started at port ${global.config.app.web_port}`);
+console.log(`app started at  ${global.config.app.url}:${global.config.app.web_port}`);

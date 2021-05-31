@@ -2,6 +2,7 @@ const Koa = require('koa');
 // 引入 koa-bodyparser 来解析原始 request 中的 body
 const bodyParser = require('koa-bodyparser');
 const fs = require('fs');
+
 const helper = require(global.root_path + '/lib/helper');
 const templating = require(helper.fileWithAbsPath('bootstrap', 'templating'));
 const rest = require(helper.fileWithAbsPath('bootstrap', 'rest'));
