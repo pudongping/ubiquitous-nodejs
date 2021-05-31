@@ -20,7 +20,7 @@ module.exports = {
                     ctx.response.body = {
                         code: ErrorCode.Code.SUCC_HTTP_OK,
                         message: ErrorCode.getErrMsg(ErrorCode.Code.SUCC_HTTP_OK),
-                        data: data
+                        data: data || {}
                     };
                 }
                 try {

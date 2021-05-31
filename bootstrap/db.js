@@ -3,6 +3,7 @@
  */
 
 const Sequelize = require('sequelize');
+const moment = require('moment');
 
 console.log('init sequelize...');
 
@@ -47,40 +48,45 @@ function defineModel(name, attributes) {
         comment: "自增id"
     };
     // 创建时间
-    attrs.created_at = {
+    attrs.createdAt = {
         type: Sequelize.DATE,
+        field: 'created_at',
         allowNull: true,
         defaultValue: Sequelize.NOW
     };
     // 更新时间
-    attrs.updated_at = {
+    attrs.updatedAt = {
         type: Sequelize.DATE,
+        field: 'updated_at',
         allowNull: true,
         defaultValue: Sequelize.NOW
     };
 
-    console.log('model defined for table: ' + name + '\n' + JSON.stringify(attrs, (k, v) => {
-        if (k === 'type') {
-            for (let key in Sequelize) {
-                if (key === 'ABSTRACT' || key === 'NUMBER') {
-                    continue;
-                }
-                let dbType = Sequelize[key];
-                if (typeof dbType === 'function') {
-                    if (v instanceof dbType) {
-                        if (v._length) {
-                            return `${dbType.key}(${v._length})`;
-                        }
-                        return dbType.key;
+    // 打印模型初始化信息
+    if (global.config.app.enable_db_defined) {
+        console.log('model defined for table: ' + name + '\n' + JSON.stringify(attrs, (k, v) => {
+            if (k === 'type') {
+                for (let key in Sequelize) {
+                    if (key === 'ABSTRACT' || key === 'NUMBER') {
+                        continue;
                     }
-                    if (v === dbType) {
-                        return dbType.key;
+                    let dbType = Sequelize[key];
+                    if (typeof dbType === 'function') {
+                        if (v instanceof dbType) {
+                            if (v._length) {
+                                return `${dbType.key}(${v._length})`;
+                            }
+                            return dbType.key;
+                        }
+                        if (v === dbType) {
+                            return dbType.key;
+                        }
                     }
                 }
             }
-        }
-        return v;
-    }, '  '));
+            return v;
+        }, '  '));
+    }
 
     // 第一个参数 name 是表名
     // 第二个参数 attrs 指定列名和数据类型
@@ -88,10 +94,10 @@ function defineModel(name, attributes) {
     return sequelize.define(name, attrs, {
         tableName: name,
         // freezeTableName: true,  // 使用自定义表名
-        timestamps: false,  // 去掉默认的添加时间和更新时间
+        // timestamps: false,  // 去掉默认的添加时间和更新时间
         hooks: {
             beforeValidate: function (obj) {
-                let now = Date.now();
+                let now = moment().format('YYYY-MM-DD hh:mm:ss');
                 if (obj.isNewRecord) {  // 是否是新纪录
                     console.log('will create entity...' + obj);
                     obj.created_at = now;
