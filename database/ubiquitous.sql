@@ -1,3 +1,10 @@
+-- 创建数据库
+CREATE database ubiquitous DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_general_ci;
+
+-- 使用数据库
+use ubiquitous;
+
+-- 创建用户表
 CREATE TABLE `ubiquitous`.`users`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
@@ -10,6 +17,7 @@ CREATE TABLE `ubiquitous`.`users`  (
   PRIMARY KEY (`id`)
 ) COMMENT = '用户表';
 
+-- 创建站点配置表
 CREATE TABLE `ubiquitous`.`web_sites`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '网站title',
